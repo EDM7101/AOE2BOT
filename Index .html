@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age of Empires II Bot</title>
+    <style>
+        body {
+            font-family: Consolas, monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: left;
+            padding: 20px;
+            background-color: #000;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            max-width: 90vw;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .file-input {
+            display: none;
+        }
+        .file-label {
+            padding: 5px;
+            border: 1px solid #007bff;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .file-label:hover {
+            background-color: #007bff;
+        }
+        .button {
+            padding: 5px 10px;
+            border: 1px solid #007bff;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 3px;
+            outline: none;
+            transition: background-color 0.3s;
+            margin: 0 5px;
+        }
+        .button:hover {
+            background-color: #007bff;
+        }
+        .credits {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Age of Empires II Bot</h1>
+        <label for="fileInput" class="file-label">Python-Datei auswählen</label>
+        <input type="file" id="fileInput" class="file-input" accept=".py">
+        <button id="startButton" class="button">Start Bot</button>
+        <button id="stopButton" class="button">Stop Bot</button>
+        <div class="credits">Made by EDM7101</div>
+    </div>
+
+    <script>
+        document.getElementById("startButton").addEventListener("click", function() {
+            var fileInput = document.getElementById("fileInput");
+            if (fileInput.files.length > 0) {
+                var file = fileInput.files[0];
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    var fileContents = event.target.result;
+                    eval(fileContents); // Führe den Inhalt der Python-Datei aus
+                };
+                reader.readAsText(file);
+            } else {
+                alert("Bitte wählen Sie eine Python-Datei aus.");
+            }
+        });
+
+        document.getElementById("stopButton").addEventListener("click", function() {
+            // Hier können Sie den Code einfügen, um den Bot zu stoppen oder zu deaktivieren
+            console.log("Bot wird gestoppt.");
+        });
+    </script>
+</body>
+</html>
